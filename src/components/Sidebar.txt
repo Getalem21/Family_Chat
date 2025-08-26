@@ -1,0 +1,108 @@
+import React, { useState } from "react";
+import { FaHome, FaUserFriends, FaComments, FaVideo, FaPhone, FaCalendarAlt, FaBell, FaCog, FaInfoCircle, FaEnvelope } from "react-icons/fa";
+import { motion } from "framer-motion";
+import "./Sidebar.css";
+
+const menuItems = [
+  { id: 1, name: "Home", icon: <FaHome /> },
+  { id: 2, name: "Family Members", icon: <FaUserFriends /> },
+  { id: 3, name: "Messages", icon: <FaComments /> },
+  { id: 4, name: "Video Call", icon: <FaVideo /> },
+  { id: 5, name: "Voice Call", icon: <FaPhone /> },
+  { id: 6, name: "Events", icon: <FaCalendarAlt /> },
+  { id: 7, name: "Notifications", icon: <FaBell /> },
+  { id: 8, name: "Settings", icon: <FaCog /> },
+  { id: 9, name: "About", icon: <FaInfoCircle /> },
+  { id: 10, name: "Inbox", icon: <FaEnvelope /> },
+];
+
+const familyMembers = [
+  { id: 1, name: "Mom" },
+  { id: 2, name: "Dad" },
+  { id: 3, name: "Sister" },
+  { id: 4, name: "Brother" },
+];
+
+function Sidebar() {
+  const [activeMenu, setActiveMenu] = useState(menuItems[0]);
+  const [activeMember, setActiveMember] = useState(familyMembers[0]);
+
+  return (
+    <div className="app-container">
+      {/* Sidebar */}
+      <div className="sidebar">
+        <h2>Family Chat</h2>
+        <ul>
+          {menuItems.map((item) => (
+            <li
+              key={item.id}
+              className={activeMenu.id === item.id ? "active" : ""}
+              onClick={() => setActiveMenu(item)}
+            >
+              <span className="icon">{item.icon}</span>
+              {item.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Main area */}
+      <div className="main-area">
+        {activeMenu.name === "Home" ? (
+          // Home/Welcome Page with animation
+          <div className="home-container">
+            <motion.h1
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+            >
+              Welcome to Family Chat!
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2 }}
+            >
+              Connect with your loved ones anytime, anywhere.
+            </motion.p>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Get Started
+            </motion.button>
+          </div>
+        ) : (
+          // Chat area
+          <div className="chat-area">
+            <h2>{activeMenu.name}</h2>
+            <div className="chat-members">
+              <h3>Family Members</h3>
+              <ul>
+                {familyMembers.map((member) => (
+                  <li
+                    key={member.id}
+                    className={activeMember.id === member.id ? "active" : ""}
+                    onClick={() => setActiveMember(member)}
+                  >
+                    {member.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="messages">
+              <div className="message sender">Hello {activeMember.name}!</div>
+              <div className="message receiver">Hi there! How are you?</div>
+            </div>
+            <div className="chat-input">
+              <input type="text" placeholder="Type your message..." />
+              <button>Send</button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default Sidebar;
