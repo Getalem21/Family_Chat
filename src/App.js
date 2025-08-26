@@ -3,6 +3,7 @@ import Sidebar from "./components/Sidebar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
 import "./App.css";
+import Family from "./components/Family";
 
 function App() {
   const [selectedMenu, setSelectedMenu] = useState("Home");
@@ -16,7 +17,7 @@ function App() {
       <div className="main-container">
         <div className="page-content">
           {selectedMenu === "Home" && <Home />}
-          {selectedMenu === "Family" && <h2>Family Members Section</h2>}
+          {selectedMenu === "Family" && <Family/>}
           {selectedMenu === "Messages" && <h2>Messages Section</h2>}
           {selectedMenu === "Video Call" && <h2>Video Call Feature</h2>}
           {selectedMenu === "Voice Call" && <h2>Voice Call Feature</h2>}
