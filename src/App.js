@@ -1,36 +1,36 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-//import { FaHome, FaUserFriends, FaComments, FaVideo, FaPhone, FaCalendarAlt, FaBell, FaCog, FaInfoCircle, FaEnvelope } from "react-icons/fa";
-//import { motion } from "framer-motion";
-import Home from "./components/Home.jsx";
-import About from "./components/About.jsx";
-import Navbar from "./components/Navbar.jsx";
-import Family from "./components/Family.jsx";
-import Footer from "./components/Footer.jsx";
-import './App.css'
-//import Sidebar from "./components/Sidebar";
-//import Slideshow from "./components/Slideshow";
+import React, { useState } from "react";
+import Sidebar from "./components/Sidebar";
+import Home from "./components/Home";
+import Footer from "./components/Footer";
+import "./App.css";
 
 function App() {
+  const [selectedMenu, setSelectedMenu] = useState("Home");
+
   return (
-    <>
-    <Router>
-      <div className="Homepage">
-        <Navbar />
+    <div className="app-container">
+      {/* Sidebar */}
+      <Sidebar onSelect={setSelectedMenu} />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/About" element={<About />} />
-          <Route path="/Family" element={<Family />} />
+      {/* Main content */}
+      <div className="main-container">
+        <div className="page-content">
+          {selectedMenu === "Home" && <Home />}
+          {selectedMenu === "Family" && <h2>Family Members Section</h2>}
+          {selectedMenu === "Messages" && <h2>Messages Section</h2>}
+          {selectedMenu === "Video Call" && <h2>Video Call Feature</h2>}
+          {selectedMenu === "Voice Call" && <h2>Voice Call Feature</h2>}
+          {selectedMenu === "Events" && <h2>Upcoming Family Events</h2>}
+          {selectedMenu === "Notifications" && <h2>Notifications</h2>}
+          {selectedMenu === "Settings" && <h2>Settings Page</h2>}
+          {selectedMenu === "About" && <h2>About Family Chat</h2>}
+          {selectedMenu === "Inbox" && <h2>Inbox Messages</h2>}
+        </div>
 
-        </Routes>
-        <Home/>
-        
+        {/* Footer */}
+        <Footer />
       </div>
-      <Footer />
-    </Router>
-    
-    </>
+    </div>
   );
 }
 

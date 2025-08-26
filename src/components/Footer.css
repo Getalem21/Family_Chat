@@ -1,37 +1,6 @@
-.footerdiv{
-  background-color: rgb(5, 37, 37);
+.footer {
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 15px;
 }
-.footerdiv h1{
-   color: aliceblue;
-   padding: 20px;
-   margin: 10px;
-}
-.footerdiv p{
-   color: aliceblue;
-   font-family: 'Times New Roman', Times, serif;
-   font-style: italic;
-}
-.footerlinks{
-    display: flex;
-    flex-direction:column;
-    list-style: none;
-    margin: 10px;
-}
- li a{
-    display: flex;
-    flex-direction:column;
-    flex-direction: none;
-    list-style: none;
-    text-decoration: none;
- }
- .footerall{
-    display: flex;
-    flex-direction: row;
-
- }
- 
- .copyRight p {
-   margin-left: 350px;
-   padding-bottom: 20px;
-
- }
